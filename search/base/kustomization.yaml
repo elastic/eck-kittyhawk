@@ -1,0 +1,6 @@
+resources:
+  - elasticsearch.yml
+  - kibana.yml
+  - trial-license.yml
+  - synonyms-configmap.yml
+#  - fleet.yml

@@ -1,0 +1,5 @@
+resources:
+  - elasticsearch.yml
+  - kibana.yml
+  - trial-license.yml
+  - fleet.yml
