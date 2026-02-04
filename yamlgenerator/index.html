@@ -319,7 +319,7 @@
                     metadata: {
                         name: formData.get("clusterName") || "elasticsearch",
                     },
-                    spec: { version: formData.get("version") || "9.0.0" },
+                    spec: { version: formData.get("version") || "9.3.0" },
                 };
                 const ns = formData.get("namespace")?.trim();
                 if (ns) cluster.metadata.namespace = ns;
@@ -620,7 +620,7 @@
                         <div class="form-row">
                             <div>
                                 <label>Version</label>
-                                <input name="version" value="9.0.0" required />
+                                <input name="version" value="9.3.0" required />
                             </div>
                         </div>
                         <label>Extra Cluster Config (YAML)</label>
@@ -648,7 +648,7 @@
                             <label>Image</label>
                             <input
                                 name="image"
-                                placeholder="docker.elastic.co/elasticsearch/elasticsearch:9.0.0"
+                                placeholder="docker.elastic.co/elasticsearch/elasticsearch:9.3.0"
                             />
                             <label>Secure Settings Secret Name</label>
                             <input
