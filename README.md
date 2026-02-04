@@ -18,9 +18,9 @@ As always, please consult the current documentation first to be safe. -> https:/
 1. Run these two commands
 ```
 # Install the Custom Resource Definitions
-kubectl create -f https://download.elastic.co/downloads/eck/3.0.0/crds.yaml
+kubectl create -f https://download.elastic.co/downloads/eck/3.3.0/crds.yaml
 # Install the Elastic Operator
-kubectl apply -f https://download.elastic.co/downloads/eck/3.0.0/operator.yaml
+kubectl apply -f https://download.elastic.co/downloads/eck/3.3.0/operator.yaml
 ```
 
 The operator should be installed and running at this point in the `elastic-system` namespace. Check the logs with this command if you would like.
