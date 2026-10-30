@@ -11,6 +11,8 @@ flowchart LR
 	req4(Fleet Server) --- Elasticsearch_Cluster
 	subgraph Elasticsearch_Cluster
 	es1 --- es2
+	es2 --- es3
+	es3 --- es1
 	end
 	Elasticsearch_Cluster --- Kibana
 	Elasticsearch_Cluster --- A[/Kubernetes Secret: License\]
@@ -21,7 +23,7 @@ flowchart LR
 
 | Elastic Cluster | Filename | Resource (Kind) | Count |  Features Added |
 | :-------------: |:-------------:| :-------------: | :-------------: | :-------------: |
-|main|elasticsearch.yml|Elasticsearch|2|[Virtual Memory](https://www.elastic.co/guide/en/cloud-on-k8s/current/k8s-virtual-memory.html), [Internal Monitoring](https://www.elastic.co/guide/en/cloud-on-k8s/current/k8s-stack-monitoring.html), [Ephemeral Drives](https://www.elastic.co/guide/en/cloud-on-k8s/current/k8s-volume-claim-templates.html#k8s_emptydir)|
+|main|elasticsearch.yml|Elasticsearch|3|[Virtual Memory](https://www.elastic.co/guide/en/cloud-on-k8s/current/k8s-virtual-memory.html), [Internal Monitoring](https://www.elastic.co/guide/en/cloud-on-k8s/current/k8s-stack-monitoring.html), [Ephemeral Drives](https://www.elastic.co/guide/en/cloud-on-k8s/current/k8s-volume-claim-templates.html#k8s_emptydir)|
 |main|kibana.yml|Kibana|1||
 |main|fleet.yml|Fleet Server(Agent)|1|[Fleet](https://www.elastic.co/guide/en/cloud-on-k8s/current/k8s-elastic-agent-fleet.html), [APM Integration](https://www.elastic.co/guide/en/apm/guide/current/upgrade-to-apm-integration.html) |
 |main|fleet.yml|[Agents](https://www.elastic.co/guide/en/cloud-on-k8s/current/k8s-elastic-agent-fleet-configuration-examples.html)|1+n|[System](https://docs.elastic.co/en/integrations/system), [Kubernetes](https://docs.elastic.co/integrations/kubernetes)|
@@ -31,6 +33,8 @@ flowchart LR
 ## Quickstart Cluster with Ephemeral Storage
 
 This is a basic quickstart ECK cluster that has no persistent storage.  It is meant for drop-in demos or fast exploration with deletion shortly thereafter.
+
+It runs 3 nodes on purpose. ECK upgrades a cluster with fewer than 3 nodes all at once instead of one node at a time ([update strategy](https://www.elastic.co/docs/deploy-manage/deploy/cloud-on-k8s/update-strategy)). With ephemeral `emptyDir` storage, that would restart every node with empty data at the same time and the cluster could not re-form, so keep at least 3 nodes if you plan to upgrade it.
 
 Fleet and a DaemonSet of Agents are offered as a setup as well.  Each has several integrations you'd want for Kubernetes observability and Kibana is preconfigured to load these Fleet policies. Lastly there is a trial license secret and instrucitons for deploying `kube-state-metrics` for certain metricsets.
 
