@@ -4,7 +4,7 @@ kind: Elasticsearch
 metadata:
   name: elasticsearch
 spec:
-  version: 9.3.0
+  version: 9.5.5
   monitoring:
     metrics:
       elasticsearchRefs:
@@ -14,7 +14,7 @@ spec:
       - name: elasticsearch
   nodeSets:
   - name: main
-    count: 2
+    count: 3
     podTemplate:
       spec:
         initContainers:
@@ -22,7 +22,7 @@ spec:
           securityContext:
             privileged: true
             runAsUser: 0
-          command: ['sh', '-c', 'sysctl -w vm.max_map_count=262144']
+          command: ['sh', '-c', 'sysctl -w vm.max_map_count=1048576']
         volumes:
         - name: elasticsearch-data
           emptyDir: {}

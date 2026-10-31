@@ -4,6 +4,6 @@
   path: /spec/nodeSets/0/volumeClaimTemplates/0/spec/resources/requests/storage
   value: "1000Gi"
 
-- op: replace
+- op: add
   path: /spec/nodeSets/0/volumeClaimTemplates/0/spec/storageClassName
   value: "standard"
